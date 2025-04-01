@@ -93,10 +93,12 @@ events.on('order:open', () => {
   formModel.items = basketModel.basketProducts.map(item => item.id); // передаём список id товаров которые покупаем
 });
 
-events.on('order:paymentSelection', (button: HTMLButtonElement) => { formModel.payment = button.name }) // передаём способ оплаты
+events.on('order:paymentSelection', (button: HTMLButtonElement) => {
+  formModel.payment = button.name;
+  formModel.validateOrder();
+});
 
-/********** Отслеживаем изменение в поле в вода "адреса доставки" **********/
-events.on(`order:changeAddress`, (data: { field: string, value: string }) => {
+events.on('order:changeAddress', (data: { field: string, value: string }) => {
   formModel.setOrderAddress(data.field, data.value);
 });
 
