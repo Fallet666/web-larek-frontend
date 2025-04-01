@@ -48,8 +48,8 @@ events.on('card:select', (item: IProductItem) => { dataModel.setPreview(item) })
 
 /********** Открываем модальное окно карточки товара **********/
 events.on('modalCard:open', (item: IProductItem) => {
-  const cardPreview = new CardPreview(cardPreviewTemplate, events)
-  modal.content = cardPreview.render(item);
+  const cardPreview = new CardPreview(cardPreviewTemplate, events);
+  modal.content = cardPreview.render(item, basketModel.basketProducts);
   modal.render();
 });
 
